@@ -4,7 +4,12 @@
 // Write your JavaScript code.
 
 $(Document).ready(function () {
-    $('#table-contatos').DataTable({
+    getDatatable('#table-contatos')
+    getDatatable('#table-usuarios')
+});
+
+function getDatatable(id) {
+    $(id).DataTable({
         "ordering": true,
         "paging": true,
         "searching": true,
@@ -31,10 +36,21 @@ $(Document).ready(function () {
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
         }
-    });
-});
-
+    })
+};
 
 $('.close-alert').click(function () {
     $('.alert').hide('hide')
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const autoCloseAlerts = document.querySelectorAll(".auto-close-alert");
+
+    autoCloseAlerts.forEach(function (alert) {
+        setTimeout(function () {
+            alert.style.display = "none";
+        }, 2000); // 2000 ms = 2 segundos
+    });
+});
+
+
+
