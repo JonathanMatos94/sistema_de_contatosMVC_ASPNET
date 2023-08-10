@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaContatos.Data;
+using SistemaContatos.Helper;
 using SistemaContatos.Repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +11,18 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(
                     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
                 );
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<ISessao, Sessao>();
 
+builder.Services.AddSession(o =>
+{
+    o.Cookie.HttpOnly = true;
+    o.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -30,6 +40,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
