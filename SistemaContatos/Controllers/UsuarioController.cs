@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaContatos.Filters;
 using SistemaContatos.Models;
 using SistemaContatos.Repositorio;
 
@@ -11,6 +12,9 @@ public class UsuarioController : Controller
     {
         _usuarioRepositorio = usuarioRepositorio;
     }
+
+    [PaginaRestritaSomenteAdmin]
+
     [HttpGet]
     public IActionResult Index()
     {

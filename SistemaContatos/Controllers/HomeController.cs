@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaContatos.Filters;
 using SistemaContatos.Models;
 using System.Diagnostics;
 
@@ -6,6 +7,8 @@ namespace SistemaContatos.Controllers;
 
 public class HomeController : Controller
 {
+    [PaginaParaUsuarioLogado]
+
     public IActionResult Index()
     {
         return View();

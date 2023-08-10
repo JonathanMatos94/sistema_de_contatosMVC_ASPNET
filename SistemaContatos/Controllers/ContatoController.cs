@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaContatos.Filters;
 using SistemaContatos.Models;
 using SistemaContatos.Repositorio;
 
@@ -11,25 +12,27 @@ public class ContatoController : Controller
     {
         _contatoRepositorio = contatoRepositorio;
     }
-    [HttpGet]
+
+    [PaginaParaUsuarioLogado]
+
     public IActionResult Index()
     {
         List<ContatoModel> contatos = _contatoRepositorio.BuscarTodosContatos();
 
         return View(contatos);
     }
-    [HttpGet]
+
     public IActionResult Criar()
     {
         return View();
     }
-    [HttpGet]
+
     public IActionResult Editar(int id)
     {
         ContatoModel contato = _contatoRepositorio.ListarPorId(id);
         return View(contato);
     }
-    [HttpGet]
+    
     public IActionResult ApagarConfirmacao(int id)
     {
         ContatoModel contato = _contatoRepositorio.ListarPorId(id);
