@@ -36,7 +36,11 @@ function getDatatable(id) {
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
         }
+  
+            
+ 
     })
+
 };
 
 $('.close-alert').click(function () {

@@ -10,6 +10,10 @@ public class UsuarioRepositorio : IUsuarioRepositorio
     {
         _bancoContext = bancoContext;
     }
+    public UsuarioModel BuscarPorLogin(string login)
+    {
+        return _bancoContext.Usuarios.FirstOrDefault(u => u.Login.ToUpper() == login.ToUpper());
+    }
     public List<UsuarioModel> BuscarTodosContatos()
     {
         return _bancoContext.Usuarios.ToList();
@@ -58,4 +62,5 @@ public class UsuarioRepositorio : IUsuarioRepositorio
         return true;
 
     }
+
 }

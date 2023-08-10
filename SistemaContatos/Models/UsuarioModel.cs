@@ -27,4 +27,8 @@ public class UsuarioModel
     public DateTime DataCadastro { get; set; }
 
     public DateTime? DataAtualizacao { get;set; }
+    public bool VerificaSenha(string senha)
+    {
+        return Senha == senha;
+    }
 }

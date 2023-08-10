@@ -28,13 +28,14 @@
     <br />
     <h1 class="display-4">Lista de Usuários</h1>
 
-    <table class="display" id="table-usuarios"style="width:100%">
+    <table class="display" id="table-usuarios" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Login</th>
                 <th scope="col">Email</th>
+                <th scope="col">Perfil</th>
                 <th scope="col">Data de Cadastro</th>
                 <th scope="col"></th>
             </tr>
@@ -50,6 +51,7 @@
                         <td>@usuario.Nome</td>
                         <td>@usuario.Login</td>
                         <td>@usuario.Email</td>
+                        <td>@(usuario.Perfil == SistemaContatos.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão" )</td>
                         <td>@usuario.DataCadastro</td>
                         <td>
                             <div class="btn-group" role="group">
