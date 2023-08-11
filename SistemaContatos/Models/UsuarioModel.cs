@@ -1,4 +1,5 @@
 ﻿using SistemaContatos.Enums;
+using SistemaContatos.Helper;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -29,6 +30,10 @@ public class UsuarioModel
     public DateTime? DataAtualizacao { get;set; }
     public bool VerificaSenha(string senha)
     {
-        return Senha == senha;
+        return Senha == senha.GerarHash();
+    }
+    public void SetSenhaHash()
+    {
+        Senha = Senha.GerarHash();
     }
 }
