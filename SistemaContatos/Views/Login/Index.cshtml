@@ -3,6 +3,13 @@
     Layout = "_LayoutDeslogado";
     ViewData["Title"] = "Login";
 }
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success auto-close-alert" role="alert">
+        <button type="button" class="btn-danger btn-sm close-alert" aria-label="Close" la>X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
 @if (TempData["MensagemErro"] != null)
 {
     <div class="alert alert-danger auto-close-alert" role="alert">
@@ -21,6 +28,12 @@
         <input type="password" asp-for="Senha" class="form-control">
         @Html.ValidationMessageFor(x => x.Senha)
     </div >
+    <p class="mb-4 text-sm mx-auto">
+        Esqueceu sua Senha ?
+        <a asp-action="RedefinirSenha" asp-controller="Login" class="text-primary text-gradient font-weight-bold">
+            Redefinir minha Senha
+        </a>
+    </p>
     <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary">Entrar</button>
     </div>
