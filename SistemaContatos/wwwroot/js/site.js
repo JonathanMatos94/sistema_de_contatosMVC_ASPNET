@@ -3,10 +3,26 @@
 
 // Write your JavaScript code.
 
-$(Document).ready(function () {
+$(document).ready(function () {
     getDatatable('#table-contatos')
     getDatatable('#table-usuarios')
-});
+
+    $('.btn-total-contatos').click(function () {
+        var usuarioId = $(this).attr('usuario-id');
+        $.ajax({
+            type: 'GET',
+            url: '/Usuario/ListarContatosPorUsuarioId/' + usuarioId,
+            success: function (result) {
+                $('#listaContatosUsuario').html(result);
+                $('#modalContatosUsuario').modal("show");
+                getDatatable('#table-contatos-usuario');
+
+            }
+        });    
+    });
+})
+
+
 
 function getDatatable(id) {
     $(id).DataTable({

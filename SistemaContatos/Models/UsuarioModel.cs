@@ -7,6 +7,7 @@ namespace SistemaContatos.Models;
 
 public class UsuarioModel
 {
+    public virtual List<ContatoModel> Contatos { get; set; }
     public int Id { get; set; }
 
     [Required(ErrorMessage ="Nome obrigatório!")]

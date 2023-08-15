@@ -10,9 +10,11 @@ public class ContatoRepositorio : IContatoRepositorio
     {
         _bancoContext = bancoContext;
     }
-    public List<ContatoModel> BuscarTodosContatos()
+    public List<ContatoModel> BuscarTodosContatos(int usuarioId)
     {
-        return _bancoContext.Contatos.ToList();
+        return _bancoContext.Contatos
+            .Where(x=> x.UsuarioId == usuarioId)
+            .ToList();
     }
     public ContatoModel ListarPorId(int id)
     {

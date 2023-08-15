@@ -1,4 +1,5 @@
-﻿using SistemaContatos.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaContatos.Data;
 using SistemaContatos.Models;
 
 namespace SistemaContatos.Repositorio;
@@ -21,7 +22,9 @@ public class UsuarioRepositorio : IUsuarioRepositorio
     }
     public List<UsuarioModel> BuscarTodosContatos()
     {
-        return _bancoContext.Usuarios.ToList();
+        return _bancoContext.Usuarios
+            .Include(x=>x.Contatos)
+            .ToList();
     }
     public UsuarioModel ListarPorId(int id)
     {

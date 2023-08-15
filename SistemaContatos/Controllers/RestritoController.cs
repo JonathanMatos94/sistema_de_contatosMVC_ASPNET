@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaContatos.Filters;
 
-namespace SistemaContatos.Controllers
+namespace SistemaContatos.Controllers;
+
+public class RestritoController : Controller
 {
-    public class RestritoController : Controller
+    [PaginaParaUsuarioLogado]
+    public IActionResult Index()
     {
-        [PaginaParaUsuarioLogado]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
+ 
     }
 }

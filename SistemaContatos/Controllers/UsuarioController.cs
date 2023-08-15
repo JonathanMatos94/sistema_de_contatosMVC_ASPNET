@@ -8,9 +8,12 @@ namespace SistemaContatos.Controllers;
 public class UsuarioController : Controller
 {
     private readonly IUsuarioRepositorio _usuarioRepositorio;
-    public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+    private readonly IContatoRepositorio _contatoRepositorio;
+    public UsuarioController(IUsuarioRepositorio usuarioRepositorio,
+                             IContatoRepositorio contatoRepositorio)
     {
         _usuarioRepositorio = usuarioRepositorio;
+        _contatoRepositorio = contatoRepositorio;
     }
 
     [PaginaRestritaSomenteAdmin]
@@ -26,6 +29,11 @@ public class UsuarioController : Controller
     public IActionResult Criar()
     {
         return View();
+    }
+    public IActionResult ListarContatosPorUsuarioId(int id)
+    {
+        List<ContatoModel> contatos = _contatoRepositorio.BuscarTodosContatos(id);
+        return PartialView("_ContatosUsuario", contatos);
     }
     [HttpPost]
     public IActionResult Criar(UsuarioModel usuario)
@@ -55,6 +63,7 @@ public class UsuarioController : Controller
         UsuarioModel usuario = _usuarioRepositorio.ListarPorId(id);
         return View(usuario);
     }
+
     [HttpPost]
     public IActionResult Editar(UsuarioSemSenhaModel usuarioSemSenhaModel)
     {
